@@ -1,7 +1,7 @@
 {
-  "name": "babylonjs-ts-wp-ex-003",
+  "name": "3d-parametric-design",
   "version": "1.0.0",
-  "description": "Sample project for writing Express Applications using Babylonjs, TypeScript, and Webpack",
+  "description": "This project intends to provide a framework to design parametric 3D structures.",
   "main": "server.js",
   "scripts": {
     "build": "webpack",
