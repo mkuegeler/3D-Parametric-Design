@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Custom settings
+# Exclude compiled files
+public/dist
+
+# Exclude lock.json files
+package-lock.json
