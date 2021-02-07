@@ -4,18 +4,6 @@ import { AbstractBox } from './abstract';
 import { AbstractNodes } from './abstract';
 import PARAMS from './params.json';
 
-
-// Auxiliary Classes
-interface GridInterface {
-    name: String;
-}
-
-class Grid implements GridInterface {
-    name = "grid";
-    constructor(x: number, y: number, z:number) { }
-}
-
-
 // Main Class
 export default class MainScene {
     private _canvas: HTMLCanvasElement;
