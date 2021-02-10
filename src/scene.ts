@@ -11,27 +11,28 @@ export default class MainScene {
     private _scene: BABYLON.Scene;
     private _camera: BABYLON.FreeCamera;
     private _light: BABYLON.Light;
-    private _width: number;
-    private _height: number;
-    private _depth: number;
-    private _offset: number;
+    private _params: any;
+
 
     constructor(canvasElement: string) {
         // Create canvas and engine.
         this._canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
         this._engine = new BABYLON.Engine(this._canvas, true);
-        this._width = PARAMS.width;
-        this._height = PARAMS.height;
-        this._depth = PARAMS.depth;
-        this._offset = PARAMS.offset;
+        this._params = PARAMS;
     }
 
     createScene(): void {
+
+        let camera_params = this._params.camera;
+        let floor_params = this._params.floor;
+        let column_params = this._params.column;
+        let grid_params = this._params.grid;
+
         // Create a basic BJS Scene object.
         this._scene = new BABYLON.Scene(this._engine);
 
-        // Create a FreeCamera, and set its position to (x:0, y:5, z:-10).
-        let dist = -(this._depth+this._offset)
+        // Create a FreeCamera, and set its position.
+        let dist = -(floor_params.depth + camera_params.offset)
         this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, dist), this._scene);
 
         // Target the camera to scene origin.
@@ -42,57 +43,47 @@ export default class MainScene {
 
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), this._scene);
-        
+
         // Geometry
-        
+
 
         // Floor
         let floorMat = new BABYLON.StandardMaterial("floorMat", this._scene);
         floorMat.diffuseColor = new BABYLON.Color3(1, 0, 0);
 
-        let floor = BABYLON.MeshBuilder.CreateBox("floor", { width: this._width, height: this._height, depth: this._depth }, this._scene);
+        let floor = BABYLON.MeshBuilder.CreateBox("floor", { width: floor_params.width, height: floor_params.height, depth: floor_params.depth }, this._scene);
         floor.material = floorMat;
 
         // Columns
-        
+
 
         let colMat = new BABYLON.StandardMaterial("colMat", this._scene);
         colMat.diffuseColor = new BABYLON.Color3(1, 0, 1);
 
-        let col_size = {width:0.2, height:3, depth: 0.2};
-        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(),this._width,this._height,this._depth),4,4).create();
-        
+        // let col_size = {width:0.2, height:3, depth: 0.2};
+        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), floor_params.width, floor_params.height, floor_params.depth), grid_params.nx, grid_params.nz).create();
+
         var col: BABYLON.Mesh;
         var id: string;
         let scene = this._scene;
-        let off = (col_size.width/2);
+        let off = (column_params.width / 2);
 
         ColGrid.forEach(function (value) {
-            id = (Math.random().toString().replace(/\./g , "col")).substr(0, 4);
-            col = BABYLON.MeshBuilder.CreateBox(id, { width: col_size.width, 
-                  height: col_size.height, depth:col_size.depth }, scene);
+            id = (Math.random().toString().replace(/\./g, "col")).substr(0, 4);
+            col = BABYLON.MeshBuilder.CreateBox(id, {
+                width: column_params.width,
+                height: column_params.height, depth: column_params.depth
+            }, scene);
 
             col.material = colMat;
 
             col.position.x = value.x;
-            col.position.y = ((col_size.height/2)+off);
-            col.position.z = value.z;   
+            col.position.y = ((column_params.height / 2) + off);
+            col.position.z = value.z;
 
             console.log(value);
-               
-        }); 
 
-        // id = (Math.random().toString().replace(/\./g , "x")).substr(0, 4);
-        // col = BABYLON.MeshBuilder.CreateBox(id, { width: col_size.width, 
-        //     height: col_size.height, depth:col_size.depth }, this._scene);
-            
-        // let off = (col_size.width/2);
-
-        // col.material = colMat;
-        // col.position.y = ((col_size.height/2)+off);
-        // col.position.x = -((this._width/2)-off);
-        // col.position.z = -((this._depth/2)-off);
-
+        });
     }
 
     doRender(): void {

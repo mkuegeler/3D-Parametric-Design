@@ -30,12 +30,12 @@ export class AbstractBox {
 
 export class AbstractNodes {
     box: AbstractBox;
-    AmountX: number;
-    AmountZ: number;
-    constructor(box = new AbstractBox(), AmountX: number = 2, AmountZ: number = 2) {
+    nx: number;
+    nz: number;
+    constructor(box = new AbstractBox(), nx: number = 2, nz: number = 2) {
         this.box = box;
-        this.AmountX = AmountX;
-        this.AmountZ = AmountZ;
+        this.nx = nx;
+        this.nz = nz;
     }
     create(dec: number = 1) {
         let x = (this.box.insert.x - (this.box.w / 2));
@@ -55,13 +55,13 @@ export class AbstractNodes {
         let grid = [];
 
 
-        for (j = offset; j < (this.AmountZ); j++) {
+        for (j = offset; j < (this.nz); j++) {
 
-            for (i = offset; i < (this.AmountX); i++) {
+            for (i = offset; i < (this.nx); i++) {
 
-                pm = ((width / this.AmountX) * i);
+                pm = ((width / this.nx) * i);
                 x1 = (x + pm);
-                z1 = (z + ((depth / this.AmountZ) * j));
+                z1 = (z + ((depth / this.nz) * j));
 
                 grid[all] = { x: x1.toFixed(dec), y: y.toFixed(dec), z: z1.toFixed(dec) };
                 all++;
