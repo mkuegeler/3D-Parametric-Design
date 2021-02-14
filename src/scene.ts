@@ -32,8 +32,8 @@ export default class MainScene {
         this._scene = new BABYLON.Scene(this._engine);
 
         // Create a FreeCamera, and set its position.
-        let dist = -(floor_params.depth + camera_params.offset)
-        this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, dist), this._scene);
+        let dist = -(floor_params.depth + camera_params.z)
+        this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera_params.x, camera_params.y, dist), this._scene);
 
         // Target the camera to scene origin.
         this._camera.setTarget(BABYLON.Vector3.Zero());
@@ -46,7 +46,6 @@ export default class MainScene {
 
         // Geometry
 
-
         // Floor
         let floorMat = new BABYLON.StandardMaterial("floorMat", this._scene);
         floorMat.diffuseColor = new BABYLON.Color3(1, 0, 0);
@@ -55,18 +54,16 @@ export default class MainScene {
         floor.material = floorMat;
 
         // Columns
-
-
         let colMat = new BABYLON.StandardMaterial("colMat", this._scene);
         colMat.diffuseColor = new BABYLON.Color3(1, 0, 1);
 
-        // let col_size = {width:0.2, height:3, depth: 0.2};
-        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), floor_params.width, floor_params.height, floor_params.depth), grid_params.nx, grid_params.nz).create();
+        let off = {x:(column_params.width / 2), y:(column_params.height / 2), z:(column_params.depth / 2)};
+        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-off.x), floor_params.height, (floor_params.depth-off.z)), grid_params.nx, grid_params.nz).create();
 
         var col: BABYLON.Mesh;
         var id: string;
         let scene = this._scene;
-        let off = (column_params.width / 2);
+        
 
         ColGrid.forEach(function (value) {
             id = (Math.random().toString().replace(/\./g, "col")).substr(0, 4);
@@ -78,10 +75,10 @@ export default class MainScene {
             col.material = colMat;
 
             col.position.x = value.x;
-            col.position.y = ((column_params.height / 2) + off);
+            col.position.y = (off.y + off.x);
             col.position.z = value.z;
 
-            console.log(value);
+            // console.log(value);
 
         });
     }

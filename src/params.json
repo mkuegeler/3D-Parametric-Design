@@ -1,10 +1,12 @@
 {
     "camera": {
-        "offset": 8
+        "x": 0,
+        "y": 10,
+        "z": 8
     },
     "floor": {
         "width": 20,
-        "height": 0.20,
+        "height": 0.2,
         "depth": 20
     },
     "column": {
@@ -13,8 +15,8 @@
         "depth": 0.2
     },
     "grid": {
-        "nx": 3,
-        "ny": 0,
-        "nz": 3
+        "nx": 5,
+        "ny": 1,
+        "nz": 5
     }
 }
