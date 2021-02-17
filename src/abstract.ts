@@ -31,10 +31,12 @@ export class AbstractBox {
 export class AbstractNodes {
     box: AbstractBox;
     nx: number;
+    ny: number;
     nz: number;
-    constructor(box = new AbstractBox(), nx: number = 2, nz: number = 2) {
+    constructor(box = new AbstractBox(), nx: number = 2, ny: number = 2, nz: number = 2) {
         this.box = box;
         this.nx = nx;
+        this.ny = ny;
         this.nz = nz;
     }
     create(dec: number = 1) {
@@ -44,17 +46,18 @@ export class AbstractNodes {
         let all = 0;
         let grid = [];
 
-        for (let j = 0; j <= (this.nz); j++) {
-            for (let i = 0; i <= (this.nx); i++) {
-                grid[all] = {
-                    x: (x + ((this.box.w / this.nx) * i)).toFixed(dec),
-                    y: y.toFixed(dec), z: (z + ((this.box.d / this.nz) * j)).toFixed(dec)
-                };
-                all++;
+        for (let k = 0; k <= (this.ny); k++) {
+            for (let j = 0; j <= (this.nz); j++) {
+                for (let i = 0; i <= (this.nx); i++) {
+                    grid[all] = {
+                        x: (x + ((this.box.w / this.nx) * i)).toFixed(dec),
+                        y: y.toFixed(dec), z: (z + ((this.box.d / this.nz) * j)).toFixed(dec)
+                    };
+                    all++;
+                }
             }
-
+            y = (y + this.box.h);
         }
-
         return grid;
     }
 }

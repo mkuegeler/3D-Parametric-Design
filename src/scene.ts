@@ -54,9 +54,9 @@ export default class MainScene {
         floor.material = floorMat;
         // floor.position.y = -off.y;
 
-        let ceiling = BABYLON.MeshBuilder.CreateBox("ceiling", { width: floor_params.width, height: floor_params.height, depth: floor_params.depth }, this._scene);
-        ceiling.material = floorMat;
-        ceiling.position.y = (column_params.height+floor_params.height);
+        // let ceiling = BABYLON.MeshBuilder.CreateBox("ceiling", { width: floor_params.width, height: floor_params.height, depth: floor_params.depth }, this._scene);
+        // ceiling.material = floorMat;
+        // ceiling.position.y = (column_params.height+floor_params.height);
 
         // Columns
         let colMat = new BABYLON.StandardMaterial("colMat", this._scene);
@@ -64,13 +64,14 @@ export default class MainScene {
 
         
         // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), floor_params.width, floor_params.height, floor_params.depth), grid_params.nx, grid_params.nz).create();
-        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-column_params.width), floor_params.height, (floor_params.depth-column_params.depth)), grid_params.nx, grid_params.nz).create();
+        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-column_params.width), column_params.height, (floor_params.depth-column_params.depth)), grid_params.nx, grid_params.nz).create();
         
         // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-off.x), floor_params.height, (floor_params.depth-off.z)), grid_params.nx, grid_params.nz).create();
 
         var col: BABYLON.Mesh;
         var id: string;
         let scene = this._scene;
+        var offset = ((column_params.height / 2) + (floor_params.height/2));
         
 
         ColGrid.forEach(function (value) {
@@ -83,11 +84,16 @@ export default class MainScene {
             col.material = colMat;
 
             col.position.x = value.x;
-            col.position.y = ((column_params.height / 2) + (floor_params.height/2));
-            // col.position.y = off.y;
+            // col.position.y = ((column_params.height / 2) + (floor_params.height/2));
+            col.position.y = (Number(value.y)+offset);
+            // col.position.y = (Number(value.y)+(floor_params.height/2));
+            // col.position.y = value.y;
             col.position.z = value.z;
 
-            // console.log(value);
+            // offset = (offset+floor_params.height);
+
+            // console.log(Number(value.y)+(floor_params.height/2));
+            // console.log(typeof(value.y));
 
         });
     }
