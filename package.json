@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "start": "node server",
+    "all": "webpack && node server"
   },
   "author": "mkuegeler",
   "license": "MIT",

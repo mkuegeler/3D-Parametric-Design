@@ -34,10 +34,9 @@ Check the result in your browser.
 http://localhost:3000
 ```
 
-## Script
-To automate the build and run process, you can run this script:
-
+## Running build and run with a single command
+To run the build and run process at once, you can run this command:
 
 ```
-./run.sh
+npm run all
 ```

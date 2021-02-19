@@ -60,11 +60,11 @@ export default class MainScene {
 
         // Columns
         let colMat = new BABYLON.StandardMaterial("colMat", this._scene);
-        colMat.diffuseColor = new BABYLON.Color3(1, 1, 0);
+        colMat.diffuseColor = new BABYLON.Color3(1, 1, 0); 
 
         
         // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), floor_params.width, floor_params.height, floor_params.depth), grid_params.nx, grid_params.nz).create();
-        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-column_params.width), column_params.height, (floor_params.depth-column_params.depth)), grid_params.nx, grid_params.nz).create();
+        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-column_params.width), (column_params.height + (floor_params.height/2)), (floor_params.depth-column_params.depth)), grid_params.nx, grid_params.nz).create();
         
         // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-off.x), floor_params.height, (floor_params.depth-off.z)), grid_params.nx, grid_params.nz).create();
 
