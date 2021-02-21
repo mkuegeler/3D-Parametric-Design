@@ -1,13 +1,13 @@
 {
     "camera": {
         "x": 0,
-        "y": 8,
-        "z": 15
+        "y": 10,
+        "z": 30
     },
     "floor": {
-        "width": 10,
+        "width": 40,
         "height": 0.25,
-        "depth": 10
+        "depth": 40
     },
     "column": {
         "width": 0.4,
@@ -15,8 +15,8 @@
         "depth": 0.4
     },
     "grid": {
-        "nx": 3,
-        "ny": 4,
-        "nz": 2
+        "nx": 10,
+        "ny": 10,
+        "nz": 10
     }
 }

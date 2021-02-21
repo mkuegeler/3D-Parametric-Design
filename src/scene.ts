@@ -44,56 +44,53 @@ export default class MainScene {
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), this._scene);
 
-        // Geometry
-        // let off = {x:column_params.width, y:(column_params.height / 2), z:column_params.depth};
-        // Floor
+        // Floor Material
         let floorMat = new BABYLON.StandardMaterial("floorMat", this._scene);
         floorMat.diffuseColor = new BABYLON.Color3(1, 0, 0);
-
-        let floor = BABYLON.MeshBuilder.CreateBox("floor", { width: floor_params.width, height: floor_params.height, depth: floor_params.depth }, this._scene);
-        floor.material = floorMat;
-        // floor.position.y = -off.y;
-
-        // let ceiling = BABYLON.MeshBuilder.CreateBox("ceiling", { width: floor_params.width, height: floor_params.height, depth: floor_params.depth }, this._scene);
-        // ceiling.material = floorMat;
-        // ceiling.position.y = (column_params.height+floor_params.height);
-
-        // Columns
+        // Column Material
         let colMat = new BABYLON.StandardMaterial("colMat", this._scene);
-        colMat.diffuseColor = new BABYLON.Color3(1, 1, 0); 
+        colMat.diffuseColor = new BABYLON.Color3(1, 1, 0);
+        
+        // Check if number of floors is equal or larger than 1
+        if (Number(grid_params.ny)<=0) {grid_params.ny=1;}
 
-        
-        // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), floor_params.width, floor_params.height, floor_params.depth), grid_params.nx, grid_params.nz).create();
-        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-column_params.width), (column_params.height + (floor_params.height/2)), (floor_params.depth-column_params.depth)), grid_params.nx, grid_params.nz).create();
-        
-        // let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(), (floor_params.width-off.x), floor_params.height, (floor_params.depth-off.z)), grid_params.nx, grid_params.nz).create();
+        let ColGrid = new AbstractNodes(new AbstractBox(new AbstractPoint(),
+            (floor_params.width - column_params.width),
+            (column_params.height + floor_params.height),
+            (floor_params.depth - column_params.depth)), grid_params.nx, grid_params.ny, grid_params.nz).create();
 
         var col: BABYLON.Mesh;
-        var id: string;
+        var flo: BABYLON.Mesh;
         let scene = this._scene;
-        var offset = ((column_params.height / 2) + (floor_params.height/2));
-        
+        var offset = ((column_params.height / 2) + (floor_params.height / 2));
+        let prey: number;
+        var level: number = 0;
+
 
         ColGrid.forEach(function (value) {
-            id = (Math.random().toString().replace(/\./g, "col")).substr(0, 4);
-            col = BABYLON.MeshBuilder.CreateBox(id, {
+            col = BABYLON.MeshBuilder.CreateBox((Math.random().toString().replace(/\./g, "col")).substr(0, 4), {
                 width: column_params.width,
                 height: column_params.height, depth: column_params.depth
             }, scene);
-
             col.material = colMat;
 
             col.position.x = value.x;
-            // col.position.y = ((column_params.height / 2) + (floor_params.height/2));
-            col.position.y = (Number(value.y)+offset);
-            // col.position.y = (Number(value.y)+(floor_params.height/2));
-            // col.position.y = value.y;
+            prey = Number(value.y);
+            col.position.y = (Number(value.y) + offset);
             col.position.z = value.z;
 
-            // offset = (offset+floor_params.height);
-
-            // console.log(Number(value.y)+(floor_params.height/2));
-            // console.log(typeof(value.y));
+            if ((prey != col.position.y) && (level <= Number(grid_params.ny))) {
+                
+                flo = BABYLON.MeshBuilder.CreateBox((Math.random().toString().replace(/\./g, "flo")).substr(0, 4), {
+                    width: floor_params.width,
+                    height: floor_params.height, depth: floor_params.depth
+                }, scene);
+                flo.material = floorMat;
+                if (level >= 1) {
+                    flo.position.y = ((column_params.height + floor_params.height) * level);
+                }
+                level++;
+            }
 
         });
     }

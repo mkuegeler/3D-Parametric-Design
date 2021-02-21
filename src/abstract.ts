@@ -39,19 +39,20 @@ export class AbstractNodes {
         this.ny = ny;
         this.nz = nz;
     }
-    create(dec: number = 1) {
+    create(dec: number = 2) {
         let x = (this.box.insert.x - (this.box.w / 2));
         let y = this.box.insert.y;
         let z = (this.box.insert.z - (this.box.d / 2));
         let all = 0;
         let grid = [];
 
-        for (let k = 0; k <= (this.ny); k++) {
+        for (let k = 0; k < (this.ny); k++) {
             for (let j = 0; j <= (this.nz); j++) {
                 for (let i = 0; i <= (this.nx); i++) {
                     grid[all] = {
                         x: (x + ((this.box.w / this.nx) * i)).toFixed(dec),
-                        y: y.toFixed(dec), z: (z + ((this.box.d / this.nz) * j)).toFixed(dec)
+                        y: y.toFixed(dec),
+                        z: (z + ((this.box.d / this.nz) * j)).toFixed(dec)
                     };
                     all++;
                 }
