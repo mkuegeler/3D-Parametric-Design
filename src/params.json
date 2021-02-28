@@ -1,22 +1,28 @@
 {
     "camera": {
         "x": 0,
-        "y": 10,
-        "z": 30
+        "y": 1,
+        "z": 1
     },
     "floor": {
-        "width": 40,
-        "height": 0.25,
-        "depth": 40
+        "width": 20,
+        "height": 0.20,
+        "depth": 20,
+        "active": true
     },
     "column": {
-        "width": 0.4,
+        "width": 0.20,
         "height": 3,
-        "depth": 0.4
+        "depth": 0.20,
+        "active": true
+    },
+    "wall": {
+        "offset": 2,
+        "active": true
     },
     "grid": {
-        "nx": 10,
-        "ny": 10,
-        "nz": 10
+        "nx": 4,
+        "ny": 3,
+        "nz": 4
     }
 }

@@ -39,7 +39,7 @@ export class AbstractNodes {
         this.ny = ny;
         this.nz = nz;
     }
-    create(dec: number = 2) {
+    create(dec: number = 3) {
         let x = (this.box.insert.x - (this.box.w / 2));
         let y = this.box.insert.y;
         let z = (this.box.insert.z - (this.box.d / 2));
