@@ -9,7 +9,8 @@ export default class MainScene {
     private _canvas: HTMLCanvasElement;
     private _engine: BABYLON.Engine;
     private _scene: BABYLON.Scene;
-    private _camera: BABYLON.FreeCamera;
+    private _camera1: BABYLON.FreeCamera;
+    private _camera2: BABYLON.FreeCamera;
     private _light: BABYLON.Light;
     private _params: any;
 
@@ -23,7 +24,8 @@ export default class MainScene {
 
     createScene(): void {
 
-        let camera_params = this._params.camera;
+        let camera1_params = this._params.camera1;
+        let camera2_params = this._params.camera2;
         let floor_params = this._params.floor;
         let column_params = this._params.column;
         let wall_params = this._params.wall;
@@ -36,14 +38,24 @@ export default class MainScene {
         this._scene = new BABYLON.Scene(this._engine);
 
         // Create a FreeCamera, and set its position.
-        let dist = -(floor_params.depth + camera_params.z)
-        this._camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera_params.x, camera_params.y, dist), this._scene);
+        let dist1 = -(floor_params.depth + camera1_params.z)
+        this._camera1 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera1_params.x, camera1_params.y, dist1), this._scene);
+        this._camera1.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
+
+        this._camera1.orthoTop = 15;
+        this._camera1.orthoBottom = -15;
+        this._camera1.orthoLeft = -15;
+        this._camera1.orthoRight = 15;
 
         // Target the camera to scene origin.
-        this._camera.setTarget(BABYLON.Vector3.Zero());
+        this._camera1.setTarget(BABYLON.Vector3.Zero());
 
+        let dist2 = -(floor_params.depth + camera2_params.z)
+        this._camera2 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera2_params.x, camera2_params.y, dist2), this._scene);
         // Attach the camera to the canvas.
-        this._camera.attachControl(this._canvas, false);
+        this._camera2.attachControl(this._canvas, false);
+
+        this._scene.activeCamera = this._camera2;
 
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), this._scene);
@@ -104,19 +116,19 @@ export default class MainScene {
 
             if (is_wal == true) {
 
-                if ((wal_count < Number(grid_params.nx)) && (level < 4)) {
-                    wal_width = ((Number(floor_params.width) / Number(grid_params.nx)) - (Number(column_params.width)));
-                    wal = BABYLON.MeshBuilder.CreateBox((Math.random().toString().replace(/\./g, "wal")).substr(0, 4), {
-                        width: wal_width,
-                        height: column_params.height, depth: (Number(column_params.depth) / wal_offset)
-                    }, scene);
-                    wal.material = walMat;
-                    // wal.position.x = (Number(value.x)+(wal_width/2)+(Number(column_params.width)/2));
-                    // wal.position.x = Number(value.x);
-                    wal.position.x = (Number(value.x) + ((wal_width / 2) + (Number(column_params.width) / 2)));
-                    wal.position.y = (Number(value.y) + offset);
-                    wal.position.z = value.z;
-                }
+                //if ((wal_count < Number(grid_params.nx)) && (level < 4)) {
+                wal_width = ((Number(floor_params.width) / Number(grid_params.nx)) - (Number(column_params.width)));
+                wal = BABYLON.MeshBuilder.CreateBox((Math.random().toString().replace(/\./g, "wal")).substr(0, 4), {
+                    width: wal_width,
+                    height: column_params.height, depth: (Number(column_params.depth) / wal_offset)
+                }, scene);
+                wal.material = walMat;
+                // wal.position.x = (Number(value.x)+(wal_width/2)+(Number(column_params.width)/2));
+                // wal.position.x = Number(value.x);
+                wal.position.x = (Number(value.x) + ((wal_width / 2) + (Number(column_params.width) / 2)));
+                wal.position.y = (Number(value.y) + offset);
+                wal.position.z = value.z;
+                //}
                 wal_count = (wal_count < Number(grid_params.nx)) ? wal_count : 0;
                 wal_count++;
 
