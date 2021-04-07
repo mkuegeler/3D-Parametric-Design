@@ -55,7 +55,7 @@ export default class MainScene {
         // Attach the camera to the canvas.
         this._camera2.attachControl(this._canvas, false);
 
-        this._scene.activeCamera = this._camera2;
+        this._scene.activeCamera = this._camera1;
 
         // Create a basic light, aiming 0,1,0 - meaning, to the sky.
         this._light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), this._scene);

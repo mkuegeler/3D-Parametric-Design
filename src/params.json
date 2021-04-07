@@ -3,13 +3,13 @@
         "x": 0,
         "y": 0,
         "z": 0,
-        "active": true
+        "active": false
     },
     "camera2": {
         "x": 0,
         "y": 5,
         "z": 10,
-        "active": false
+        "active": true
     },
     "floor": {
         "width": 20,
@@ -25,11 +25,11 @@
     },
     "wall": {
         "offset": 2,
-        "active": true
+        "active": false
     },
     "grid": {
         "nx": 4,
-        "ny": 3,
-        "nz": 4
+        "ny": 2,
+        "nz": 2
     }
 }
