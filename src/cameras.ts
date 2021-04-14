@@ -1,9 +1,11 @@
 // Custom camera classes
-import * as BABYLON from 'babylonjs';
+import { FreeCamera } from 'babylonjs';
+import { Camera } from 'babylonjs';
+import { Scene } from 'babylonjs';
+import { Vector3 } from 'babylonjs';
 
-export class FD_OrthoCamera {
-    _camera: BABYLON.FreeCamera;
-    _scene: BABYLON.Scene;
+export class FDOrthoCamera {
+    _camera: FreeCamera;
     x: number;
     y: number;
     z: number;
@@ -11,20 +13,32 @@ export class FD_OrthoCamera {
     orthoBottom: number;
     orthoLeft: number;
     orthoRight: number;
-    name: string;
     constructor(x: number = 0, y: number = 0, z: number = 0,
-        name = (Math.random().toString().replace(/\./g, "camera")).substr(0, 4),
-        orthoTop = 15,
-        orthoBottom = -15,
-        orthoLeft = 15,
-        orthoRight = 15
+        orthoTop: number = 15,
+        orthoBottom: number = -15,
+        orthoLeft: number = -15,
+        orthoRight: number = 15
     ) {
-        this._camera = new BABYLON.FreeCamera(name, new BABYLON.Vector3(x, y, z), this._scene);
-        this._camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
-        this._camera.orthoTop = orthoTop;
-        this._camera.orthoBottom = orthoBottom;
-        this._camera.orthoLeft = orthoLeft;
-        this._camera.orthoRight = orthoRight;
-        this._camera.setTarget(BABYLON.Vector3.Zero());
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.orthoTop = orthoTop;
+        this.orthoBottom = orthoBottom;
+        this.orthoLeft = orthoLeft;
+        this.orthoRight = orthoRight;
+        
+    }
+    create(scene: Scene) {
+        var name: string = (Math.random().toString().replace(/\./g, "camera")).substr(0, 4);
+        this._camera = new FreeCamera(name, new Vector3(this.x, this.y, this.z), scene);
+        this._camera.mode = Camera.ORTHOGRAPHIC_CAMERA;
+        this._camera.orthoTop = this.orthoTop;
+        this._camera.orthoBottom = this.orthoBottom;
+        this._camera.orthoLeft = this.orthoLeft;
+        this._camera.orthoRight = this.orthoRight;
+        this._camera.setTarget(Vector3.Zero());
+
+        return this._camera;
     }
 }

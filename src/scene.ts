@@ -2,6 +2,7 @@ import * as BABYLON from 'babylonjs';
 import { AbstractPoint } from './abstract';
 import { AbstractBox } from './abstract';
 import { AbstractNodes } from './abstract';
+import { FDOrthoCamera } from './cameras';
 import PARAMS from './params.json';
 
 // Main Class
@@ -39,21 +40,25 @@ export default class MainScene {
 
         // Create a FreeCamera, and set its position.
         let dist1 = -(floor_params.depth + camera1_params.z)
-        this._camera1 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera1_params.x, camera1_params.y, dist1), this._scene);
-        this._camera1.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
+        // this._camera1 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera1_params.x, camera1_params.y, dist1), this._scene);
+        // this._camera1.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
 
-        this._camera1.orthoTop = 15;
-        this._camera1.orthoBottom = -15;
-        this._camera1.orthoLeft = -15;
-        this._camera1.orthoRight = 15;
+        // this._camera1.orthoTop = 15;
+        // this._camera1.orthoBottom = -15;
+        // this._camera1.orthoLeft = -15;
+        // this._camera1.orthoRight = 15;
 
-        // Target the camera to scene origin.
-        this._camera1.setTarget(BABYLON.Vector3.Zero());
+        // // Target the camera to scene origin.
+        // this._camera1.setTarget(BABYLON.Vector3.Zero());
 
-        let dist2 = -(floor_params.depth + camera2_params.z)
-        this._camera2 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera2_params.x, camera2_params.y, dist2), this._scene);
-        // Attach the camera to the canvas.
-        this._camera2.attachControl(this._canvas, false);
+        // let dist2 = -(floor_params.depth + camera2_params.z)
+        // this._camera2 = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(camera2_params.x, camera2_params.y, dist2), this._scene);
+        // // Attach the camera to the canvas.
+        // this._camera2.attachControl(this._canvas, false);
+
+        // camera1_params.x, camera1_params.y, dist1
+
+        this._camera1 = new FDOrthoCamera(camera1_params.x, camera1_params.y, dist1).create(this._scene);
 
         this._scene.activeCamera = this._camera1;
 
