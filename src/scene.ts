@@ -4,6 +4,7 @@ import { AbstractBox } from './abstract';
 import { AbstractNodes } from './abstract';
 import { FDOrthoCamera } from './cameras';
 import PARAMS from './params.json';
+import CPARAMS from './cameras.json';
 
 // Main Class
 export default class MainScene {
@@ -14,6 +15,7 @@ export default class MainScene {
     private _camera2: BABYLON.FreeCamera;
     private _light: BABYLON.Light;
     private _params: any;
+    private _cparams: any;
 
 
     constructor(canvasElement: string) {
@@ -21,6 +23,7 @@ export default class MainScene {
         this._canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
         this._engine = new BABYLON.Engine(this._canvas, true);
         this._params = PARAMS;
+        this._cparams = CPARAMS;
     }
 
     createScene(): void {
@@ -34,6 +37,7 @@ export default class MainScene {
         let is_floor: Boolean = floor_params.active;
         let is_col: Boolean = column_params.active;
         let is_wal: Boolean = wall_params.active;
+        
 
         // Create a basic BJS Scene object.
         this._scene = new BABYLON.Scene(this._engine);
@@ -58,7 +62,10 @@ export default class MainScene {
 
         // camera1_params.x, camera1_params.y, dist1
 
-        this._camera1 = new FDOrthoCamera(camera1_params.x, camera1_params.y, dist1).create(this._scene);
+        // this._camera1 = new FDOrthoCamera(camera1_params.x, camera1_params.y, dist1).create(this._scene);
+        // let c1 = new FDOrthoCamera(this._scene);
+        this._camera1 = new FDOrthoCamera(this._scene).camera;
+        // this._camera1 = c1._camera;
 
         this._scene.activeCamera = this._camera1;
 

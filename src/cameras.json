@@ -1,0 +1,11 @@
+{
+    "FDOrthoCamera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "orthoTop": 15,
+        "orthoBottom": -15,
+        "orthoLeft": -15,
+        "orthoRight": 15
+    }
+}
