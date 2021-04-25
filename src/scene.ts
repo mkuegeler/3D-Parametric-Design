@@ -34,41 +34,9 @@ export default class MainScene {
             new FDArcRotateCamera(this._scene).camera
         ];
 
-        // let camera = new FDArcRotateCamera(this._scene).camera
-
-        // camera.attachControl(this._canvas, true);
-
-        // static camera
-        // let camera = new FDOrthoCamera(this._scene).camera;
-        // this._scene.activeCamera = camera;
-        // camera.attachControl(this._canvas, true);
-
         // Set active camera
         this._scene.activeCamera = cameras[1];
         cameras[1].attachControl(this._canvas, true);
-
-        // const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -20), this._scene);
-
-        // const camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 25, -50), this._scene);
-        // Targets the camera to a particular position. In this case the scene origin
-        // camera.setTarget(BABYLON.Vector3.Zero());
-
-        // javascript radian to degree and vise versa
-        // const radsToDegs = 2 * 180 / Math.PI;
-        // const ArcRotateDegrees = { "a": 0, "b": 0, "r": 0 };
-        // // const degsToRads: number = (45 * Math.PI) / 180.0;
-
-        // let p = this._params.CA.FDArcRotateCamera;
-        // Object.keys(p.RotateDegrees).map(function (key) {
-        //     p.RotateDegrees[key] = (p.RotateDegrees[key] * Math.PI) / 180.0;
-        // });
-        // const camera = new BABYLON.ArcRotateCamera("camera", 0, p.RotateDegrees.b, 50, new BABYLON.Vector3(p.x, p.y, p.z), this._scene);
-        // camera.setTarget(BABYLON.Vector3.Zero());
-        // // dynamic camera control
-        // camera.attachControl(this._canvas, true);
-
-        // static camera
-        // this._scene.activeCamera = camera;
 
         // Default light
         new BABYLON.HemisphericLight("light_" + Date.now(), new BABYLON.Vector3(0, 1, 0), this._scene);
