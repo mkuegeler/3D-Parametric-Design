@@ -28,19 +28,24 @@ export default class MainScene {
         // Create a basic BJS Scene object.
         this._scene = new BABYLON.Scene(this._engine);
 
-        // let cameras: any = [new FDOrthoCamera(this._scene, this._params.CA.FDOrthoCamera).camera,
-        // new FDArcRotateCamera(this._scene, this._params.CA.FDArcRotateCamera).camera
-        // ];
+        let cameras: any = [
+            new FDOrthoCamera(this._scene, this._params.CA.FDOrthoCamera).camera,
+            // new FDArcRotateCamera(this._scene, this._params.CA.FDArcRotateCamera).camera
+            new FDArcRotateCamera(this._scene).camera
+        ];
 
         // let camera = new FDArcRotateCamera(this._scene).camera
 
         // camera.attachControl(this._canvas, true);
 
         // static camera
+        // let camera = new FDOrthoCamera(this._scene).camera;
         // this._scene.activeCamera = camera;
+        // camera.attachControl(this._canvas, true);
 
         // Set active camera
-        // this._scene.activeCamera = cameras[0];
+        this._scene.activeCamera = cameras[1];
+        cameras[1].attachControl(this._canvas, true);
 
         // const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -20), this._scene);
 
@@ -53,25 +58,27 @@ export default class MainScene {
         // const ArcRotateDegrees = { "a": 0, "b": 0, "r": 0 };
         // // const degsToRads: number = (45 * Math.PI) / 180.0;
 
-        let p = this._params.CA.FDArcRotateCamera;
-
-        Object.keys(p.RotateDegrees).map(function (key, index) {
-            p.RotateDegrees[key] = (p.RotateDegrees[key] * Math.PI) / 180.0;
-        });
-
-        const camera = new BABYLON.ArcRotateCamera("camera", 0, p.RotateDegrees.b, 50, new BABYLON.Vector3(p.x, p.y, p.z), this._scene);
-        camera.setTarget(BABYLON.Vector3.Zero());
-        // dynamic camera control
-        camera.attachControl(this._canvas, true);
+        // let p = this._params.CA.FDArcRotateCamera;
+        // Object.keys(p.RotateDegrees).map(function (key) {
+        //     p.RotateDegrees[key] = (p.RotateDegrees[key] * Math.PI) / 180.0;
+        // });
+        // const camera = new BABYLON.ArcRotateCamera("camera", 0, p.RotateDegrees.b, 50, new BABYLON.Vector3(p.x, p.y, p.z), this._scene);
+        // camera.setTarget(BABYLON.Vector3.Zero());
+        // // dynamic camera control
+        // camera.attachControl(this._canvas, true);
 
         // static camera
         // this._scene.activeCamera = camera;
 
         // Default light
-        const light = new BABYLON.HemisphericLight("light_" + Date.now(), new BABYLON.Vector3(0, 1, 0), this._scene);
+        new BABYLON.HemisphericLight("light_" + Date.now(), new BABYLON.Vector3(0, 1, 0), this._scene);
 
         // Default geometry: a box
-        const box = BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: 20, height: 10, depth: 20 }, this._scene);
+        let w: number = this._params.PA.box.width;
+        let h: number = this._params.PA.box.height;
+        let d: number = this._params.PA.box.depth;
+
+        BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: w, height: h, depth: d }, this._scene);
 
     }
 

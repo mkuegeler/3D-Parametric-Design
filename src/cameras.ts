@@ -34,7 +34,7 @@ export class FDArcRotateCamera {
         public scene: Scene, readonly p: any = PARAMS.FDArcRotateCamera
     ) {
         var name: string = "camera_" + Date.now();
-        Object.keys(p.RotateDegrees).map(function (key, index) {
+        Object.keys(p.RotateDegrees).map(function (key) {
             p.RotateDegrees[key] = (p.RotateDegrees[key] * Math.PI) / 180.0;
         });
 

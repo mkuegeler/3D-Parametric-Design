@@ -1,35 +1,7 @@
 {
-    "camera1": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "active": false
-    },
-    "camera2": {
-        "x": 0,
-        "y": 5,
-        "z": 10,
-        "active": true
-    },
-    "floor": {
+    "box": {
         "width": 20,
-        "height": 0.20,
-        "depth": 20,
-        "active": true
-    },
-    "column": {
-        "width": 0.20,
-        "height": 3,
-        "depth": 0.20,
-        "active": true
-    },
-    "wall": {
-        "offset": 2,
-        "active": false
-    },
-    "grid": {
-        "nx": 4,
-        "ny": 2,
-        "nz": 2
+        "height": 5,
+        "depth": 20
     }
 }
