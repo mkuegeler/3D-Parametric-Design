@@ -29,7 +29,8 @@ export default class MainScene {
         this._scene = new BABYLON.Scene(this._engine);
 
         let cameras: any = [
-            new FDOrthoCamera(this._scene, this._params.CA.FDOrthoCamera).camera,
+            // new FDOrthoCamera(this._scene, this._params.CA.FDOrthoCamera).camera,
+            new FDOrthoCamera(this._scene).camera,
             // new FDArcRotateCamera(this._scene, this._params.CA.FDArcRotateCamera).camera
             new FDArcRotateCamera(this._scene).camera
         ];
