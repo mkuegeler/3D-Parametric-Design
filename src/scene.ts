@@ -2,10 +2,12 @@
 import * as BABYLON from 'babylonjs';
 import { FDOrthoCamera } from './cameras';
 import { FDArcRotateCamera } from './cameras';
+import { FDHemisphericLight } from './lights';
 
 // Import default values
-import PA from './params.json';
+import PA from './scene.json';
 import CA from './cameras.json';
+import LA from './lights.json';
 
 // Main Class
 export default class MainScene {
@@ -19,8 +21,7 @@ export default class MainScene {
         // Create canvas and engine.
         this._canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
         this._engine = new BABYLON.Engine(this._canvas, true);
-
-        this._params = { "PA": PA, "CA": CA };
+        this._params = { "PA": PA, "CA": CA, "LA": LA };
 
     }
 
@@ -35,12 +36,16 @@ export default class MainScene {
             new FDArcRotateCamera(this._scene).camera
         ];
 
+        let lights: any = [
+            new FDHemisphericLight(this._scene).light
+        ]
+
         // Set active camera
-        this._scene.activeCamera = cameras[1];
-        cameras[1].attachControl(this._canvas, true);
+        this._scene.activeCamera = cameras[this._params.PA.camera.id];
+        if (this._params.PA.camera.attachControl === true) {cameras[this._params.PA.camera.id].attachControl(this._canvas, true);}
 
         // Default light
-        new BABYLON.HemisphericLight("light_" + Date.now(), new BABYLON.Vector3(0, 1, 0), this._scene);
+        lights[this._params.PA.light.id];
 
         // Default geometry: a box
         let w: number = this._params.PA.box.width;

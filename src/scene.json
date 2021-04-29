@@ -1,0 +1,14 @@
+{
+    "camera": {
+        "id": 1,
+        "attachControl": false
+    },
+    "light": {
+        "id": 0
+    },
+    "box": {
+        "width": 20,
+        "height": 5,
+        "depth": 20
+    }
+}
