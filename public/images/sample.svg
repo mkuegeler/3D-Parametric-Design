@@ -1,0 +1,98 @@
+<svg viewBox="0 0 800 600" height="100%" style="background-color:#cccccc;" xmlns:xlink="http://www.w3.org/1999/xlink"
+    preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="100%">
+    <defs id="defs_area">
+        <radialGradient cy="0.5" fx="0.5" spreadMethod="pad" id="oqmbplxr" fy="0.5" r="0.75" cx="0.5">
+            <stop offset="10%" stop-opacity="1" stop-color="#0000ff" />
+            <stop offset="100%" stop-opacity="1" stop-color="#ffcc00" />
+        </radialGradient>
+    </defs>
+    <style type="text/css">
+        <![CDATA[
+        rect.xbdlbnyw {
+            stroke-width: 1;
+            stroke: #000000;
+            fill: url(#oqmbplxr);
+        }
+
+        circle.pmfckkxv {
+            stroke-width: 1;
+            stroke: #000000;
+            fill: none;
+        }
+
+        circle.ktinfwnn {
+            stroke-width: 2;
+            stroke: #ff88cc;
+            fill: #00ff00;
+        }
+
+        circle.kkrqqmuj {
+            stroke-width: 1;
+            stroke: #000000;
+            fill: #ff6644;
+        }
+
+        circle.laxbnlwv {
+            stroke-width: 5;
+            stroke: #686868;
+            fill: #ff0000;
+        }
+
+        circle.xjvfnllo {
+            stroke-width: 1;
+            stroke: #000000;
+            fill: #ff0099;
+        }
+
+        circle.qphubgaa {
+            stroke-width: 1;
+            stroke: #000000;
+            fill: #0055cc;
+        }
+
+        circle.inhouhjl {
+            stroke-width: 2;
+            stroke: #000000;
+            fill: #00cc44;
+        }
+
+        circle.lpgxdoiz {
+            stroke-width: 1;
+            stroke: #006600;
+            fill: #005544;
+        }
+
+        circle.bgehbfmg {
+            stroke-width: 2;
+            stroke: #00ff00;
+            fill: #ffcc88;
+        }
+
+        line.cjepffui {
+            stroke-width: 1;
+            stroke: #ff0000;
+        }
+
+        line.mrtzvwxl {
+            stroke-width: 1;
+            stroke: #0000ff;
+        }
+        ]]>
+    </style>
+    <g id="main">
+        <g type="composite_rect">
+            <rect ry="0" height="600.0" class="xbdlbnyw" x="0.0" rx="0" width="800.0" y="0.0" />
+            <circle cy="0.0" class="pmfckkxv" r="20.0" cx="0.0" />
+            <circle cy="600.0" class="ktinfwnn" r="20.0" cx="0.0" />
+            <circle cy="300.0" class="kkrqqmuj" r="20.0" cx="800.0" />
+            <circle cy="600.0" class="laxbnlwv" r="20.0" cx="400.0" />
+            <circle cy="0.0" class="xjvfnllo" r="20.0" cx="400.0" />
+            <circle cy="0.0" class="qphubgaa" r="20.0" cx="800.0" />
+            <circle cy="600.0" class="inhouhjl" r="20.0" cx="800.0" />
+            <circle cy="300.0" class="lpgxdoiz" r="20.0" cx="400.0" />
+            <circle cy="300.0" class="bgehbfmg" r="20.0" cx="0.0" />
+            <line x1="400.0" y1="0.0" x2="400.0" y2="600.0" class="cjepffui" />
+            <line x1="800.0" y1="300.0" x2="0.0" y2="300.0" class="mrtzvwxl" />
+        </g>
+    </g>
+</svg>

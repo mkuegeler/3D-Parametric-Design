@@ -17,7 +17,7 @@ HemisphericLight
 export class FDHemisphericLight {
     public light: HemisphericLight;
     constructor(public scene: Scene, readonly p: any = PARAMS.FDHemisphericLight) {
-        var name: string = "light_" + Date.now();
+        // var name: string = "light_" + Date.now();
         this.light = new HemisphericLight("light_" + Date.now(), new Vector3(p.x, p.y, p.z), scene);
     }
 }

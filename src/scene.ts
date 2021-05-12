@@ -47,12 +47,33 @@ export default class MainScene {
         // Default light
         lights[this._params.PA.light.id];
 
+        // Materials
+
+        let myMaterial = new BABYLON.StandardMaterial("myMaterial", this._scene);
+
+            // myMaterial.diffuseColor = new BABYLON.Color3(1, 0.5, 0);
+            // myMaterial.specularColor = new BABYLON.Color3(0.5, 0.6, 0.87);
+            // myMaterial.emissiveColor = new BABYLON.Color3(1, 0, 1);
+            // myMaterial.ambientColor = new BABYLON.Color3(0.23, 0.98, 0.53);
+            myMaterial.diffuseTexture = new BABYLON.Texture("/images/sample.svg", this._scene);
+        
+
         // Default geometry: a box
         let w: number = this._params.PA.box.width;
         let h: number = this._params.PA.box.height;
         let d: number = this._params.PA.box.depth;
+        let o: number = this._params.PA.ground.offset;
 
-        BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: w, height: h, depth: d }, this._scene);
+        let box = BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: w, height: h, depth: d }, this._scene);
+
+        box.material = myMaterial;
+        box.position.y = (h/2);
+
+        // Ground
+        let ground = BABYLON.MeshBuilder.CreateGround("ground", {width:(w*o), height:(d*o)});  
+        
+        // Background
+        this._scene.clearColor = new BABYLON.Color4(0.5, 0.8, 0.5);
 
     }
 

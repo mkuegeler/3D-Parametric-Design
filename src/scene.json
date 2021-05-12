@@ -1,7 +1,7 @@
 {
     "camera": {
         "id": 1,
-        "attachControl": false
+        "attachControl": true
     },
     "light": {
         "id": 0
@@ -10,5 +10,8 @@
         "width": 20,
         "height": 5,
         "depth": 20
+    },
+    "ground": {
+        "offset": 10
     }
 }
