@@ -3,11 +3,13 @@ import * as BABYLON from 'babylonjs';
 import { FDOrthoCamera } from './cameras';
 import { FDArcRotateCamera } from './cameras';
 import { FDHemisphericLight } from './lights';
+import { FDStandardMaterial } from './materials';
 
 // Import default values
 import PA from './scene.json';
 import CA from './cameras.json';
 import LA from './lights.json';
+import MA from './materials.json';
 
 // Main Class
 export default class MainScene {
@@ -21,7 +23,7 @@ export default class MainScene {
         // Create canvas and engine.
         this._canvas = document.getElementById(canvasElement) as HTMLCanvasElement;
         this._engine = new BABYLON.Engine(this._canvas, true);
-        this._params = { "PA": PA, "CA": CA, "LA": LA };
+        this._params = { "PA": PA, "CA": CA, "LA": LA , "MA": MA };
 
     }
 
@@ -40,6 +42,10 @@ export default class MainScene {
             new FDHemisphericLight(this._scene).light
         ]
 
+        let materials: any = [
+            new FDStandardMaterial(this._scene).material
+        ]
+
         // Set active camera
         this._scene.activeCamera = cameras[this._params.PA.camera.id];
         if (this._params.PA.camera.attachControl === true) {cameras[this._params.PA.camera.id].attachControl(this._canvas, true);}
@@ -49,13 +55,13 @@ export default class MainScene {
 
         // Materials
 
-        let myMaterial = new BABYLON.StandardMaterial("myMaterial", this._scene);
+        //  let myMaterial = new BABYLON.StandardMaterial("myMaterial", this._scene);
 
             // myMaterial.diffuseColor = new BABYLON.Color3(1, 0.5, 0);
             // myMaterial.specularColor = new BABYLON.Color3(0.5, 0.6, 0.87);
             // myMaterial.emissiveColor = new BABYLON.Color3(1, 0, 1);
             // myMaterial.ambientColor = new BABYLON.Color3(0.23, 0.98, 0.53);
-            myMaterial.diffuseTexture = new BABYLON.Texture("/images/sample.svg", this._scene);
+        //    myMaterial.diffuseTexture = new BABYLON.Texture("/images/sample.svg", this._scene);
         
 
         // Default geometry: a box
@@ -66,7 +72,7 @@ export default class MainScene {
 
         let box = BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: w, height: h, depth: d }, this._scene);
 
-        box.material = myMaterial;
+        box.material = materials[0];
         box.position.y = (h/2);
 
         // Ground
