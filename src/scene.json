@@ -1,4 +1,23 @@
 {
+    "scene": {
+        "background": {
+            "r": 0.5,
+            "g": 0.1,
+            "b": 0.8
+        },
+        "ground": {
+            "cone": false,
+            "offset": 10,
+            "height": 0.1,
+            "tessellation": 72,
+            "subdivisions": 1,
+            "color": {
+                "r": 0.5,
+                "g": 0.1,
+                "b": 0.8
+            }
+        }
+    },
     "camera": {
         "id": 1,
         "attachControl": true
@@ -8,10 +27,7 @@
     },
     "box": {
         "width": 20,
-        "height": 5,
+        "height": 20,
         "depth": 20
-    },
-    "ground": {
-        "offset": 10
     }
 }
