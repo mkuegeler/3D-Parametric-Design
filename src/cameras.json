@@ -2,20 +2,20 @@
     "FDOrthoCamera": {
         "x": 0,
         "y": 0,
-        "z": -55,
-        "orthoTop": 55,
-        "orthoBottom": -55,
-        "orthoLeft": -55,
-        "orthoRight": 55
+        "z": -15,
+        "orthoTop": 15,
+        "orthoBottom": -15,
+        "orthoLeft": -15,
+        "orthoRight": 15
     },
     "FDArcRotateCamera": {
         "x": 0,
-        "y": 50,
+        "y": 0,
         "z": -50,
         "RotateDegrees": {
-            "a": 45,
+            "a": 0,
             "b": 0,
-            "r": 50
+            "r": 0
         }
     }
 }

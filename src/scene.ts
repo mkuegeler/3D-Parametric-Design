@@ -34,12 +34,22 @@ export default class MainScene {
         // Enable Collisions
         this._scene.collisionsEnabled = true;
 
+        // Default geometry: a box
+        let w: number = this._params.PA.box.width;
+        let h: number = this._params.PA.box.height;
+        let d: number = this._params.PA.box.depth;
+        let o: number = this._params.PA.scene.ground.offset;
+        let c: number = this._params.PA.camera.offset;
+
+        let custom_camera = this._params.CA.FDArcRotateCamera;
+        custom_camera.z = -(d * c);
 
         let cameras: any = [
             // new FDOrthoCamera(this._scene, this._params.CA.FDOrthoCamera).camera,
             new FDOrthoCamera(this._scene).camera,
             // new FDArcRotateCamera(this._scene, this._params.CA.FDArcRotateCamera).camera
-            new FDArcRotateCamera(this._scene).camera
+            // new FDArcRotateCamera(this._scene).camera
+            new FDArcRotateCamera(this._scene,custom_camera).camera
         ];
 
         let lights: any = [
@@ -59,12 +69,6 @@ export default class MainScene {
 
         // Default light
         lights[this._params.PA.light.id];
-
-        // Default geometry: a box
-        let w: number = this._params.PA.box.width;
-        let h: number = this._params.PA.box.height;
-        let d: number = this._params.PA.box.depth;
-        let o: number = this._params.PA.scene.ground.offset;
 
         let box = BABYLON.MeshBuilder.CreateBox("box_" + Date.now(), { width: w, height: h, depth: d }, this._scene);
         box.checkCollisions = true;

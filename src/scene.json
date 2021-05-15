@@ -20,7 +20,8 @@
     },
     "camera": {
         "id": 1,
-        "attachControl": true
+        "attachControl": true,
+        "offset": 3
     },
     "light": {
         "id": 0
